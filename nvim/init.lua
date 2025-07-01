@@ -3,11 +3,12 @@
 -- See https://github.com/savq/paq-nvim
 require "paq" {
     "savq/paq-nvim",
-    'kyazdani42/nvim-web-devicons',
+    "kyazdani42/nvim-web-devicons",
     "windwp/nvim-autopairs",
     "numToStr/Comment.nvim",
     "alvarosevilla95/luatab.nvim",
     "nvim-lualine/lualine.nvim",
+    { "nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
     { "catppuccin/nvim", as = "catppuccin" },
 }
 
