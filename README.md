@@ -2,17 +2,18 @@
 
 ## Used extensions
 * https://github.com/catppuccin/alacritty
-* https://github.com/sudosubin/one-dark-alacritty
-^ I have modified this for the new toml config
+* https://github.com/sudosubin/one-dark-alacritty (modified for new toml config)
 
 # Nvim
 
 ## Used extensions
-* https://github.com/savq/paq-nvim
-* https://github.com/kyazdani42/nvim-web-devicons
-* https://github.com/windwp/nvim-autopairs
-* https://github.com/numToStr/Comment.nvim
-* https://github.com/alvarosevilla95/luatab.nvim
-* https://github.com/nvim-lualine/lualine.nvim
-* https://github.com/catppuccin/nvim
-* https://github.com/nvim-treesitter/nvim-treesitter
+None! although it does have some modified code from:
+https://github.com/catppuccin/vim
+
+# Bash
+
+## Used extensions
+* https://github.com/sharkdp/hyperfine
+* https://github.com/eza-community/eza
+* https://github.com/scop/bash-completion 
+* https://github.com/Gobidev/pfetch-rs
