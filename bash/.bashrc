@@ -15,6 +15,9 @@ export FETCH='pfetch'
 alias clear="clear; $FETCH"
 $FETCH 
 
+
+# Can be replaced with whatever editor you use
+alias nv="nvim"
 # eza is a replacement for ls that gives it color, icons, etc... https://github.com/eza-community/eza
 alias l="eza -a -l -s type --icons --no-permissions"
 # hyperfine is a replacement for time that runs multiple tests and gives a summary https://github.com/sharkdp/hyperfine
