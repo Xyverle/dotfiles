@@ -6,6 +6,8 @@ export PATH="~/.cargo/bin:$PATH"
 
 export HISTCONTROL=ignorespace
 export BROWSER=librewolf
+export MANPAGER='nvim +Man!'
+export PAGER="nvim -R"
 # pfetch settings
 # note: here I am actually using pfetch-rs and not pfetch for a faster runtime https://github.com/Gobidev/pfetch-rs
 # if you want to use something other than pfetch remove first 2 lines and replace FETCH with your preferred fetch
@@ -15,44 +17,38 @@ export FETCH='pfetch'
 alias clear="clear; $FETCH"
 $FETCH 
 
-
-# Can be replaced with whatever editor you use
 alias nv="nvim"
-# eza is a replacement for ls that gives it color, icons, etc... https://github.com/eza-community/eza
 alias l="eza -a -l -s type --icons --no-permissions"
-# hyperfine is a replacement for time that runs multiple tests and gives a summary https://github.com/sharkdp/hyperfine
-alias time="hyperfine"
-# zoxide is a replacement for cd that remembers path you've visited and lets you use shortcuts https://github.com/ajeetdsouza/zoxide
-# optionally use can install fzf for fuzzy finding when using interactive mode https://github.com/junegunn/fzf
+alias hf="hyperfine"
 eval "$(zoxide init bash --cmd j)"
-#                              ^ I have this bound to j change this to cd if you prefer that
 
-# zellij is a rust replacement for tmux
-#eval "$(zellij setup --generate-auto-start bash)"
+export _ZO_DOCTOR=0
 
 # jump and list
 jl(){
-  j $1; l
+    j $1; l
 }
 
-# this colors the dollar sign green on command success/ctrl+c termination and red on failure(it also gives the exit code on failure)
-colorPrompt(){
-  cmdstatus="$?"
-  if [ "$cmdstatus" -eq 0 ] || [ "$cmdstatus" -eq 130 ]; then
-      printf "\033[32m$PROMPT_END"
+# this colors the dollar sign green on command success/ctrl+c termination/ctrl+z suspension and red on failure(it also gives the exit code on failure)
+prompt_command(){
+    success_color="\[\e[32m\]"
+    failure_color="\[\e[31m\]"
+    dir_color="\[\e[34m\]"
+    color_reset="\[\e[0m\]"
+    cmdstatus="$?"
+    if [ "$cmdstatus" -eq 0 ] || [ "$cmdstatus" -eq 130 ] || [ "$cmdstatus" -eq 148 ]; then
+        color="$success_color"
     else
-      printf "\033[31m$cmdstatus$PROMPT_END"
-  fi
+        color="$failure_color$cmdstatus"
+    fi
+    PS1="$dir_color\w $color\$ $color_reset"
 }
+export PROMPT_COMMAND="prompt_command"
 
-export PROMPT_END="$"
-export PROMPT_DIR_COLOR="\033[34m"
-
-# configures the prompt
-# if you want to configure this simply put \[$(colorPrompt)\] before your dollar sign, arrow, etc...
-export PS1='\033[34m\w \[$(colorPrompt)\]\033[0m '
-
-export NVM_DIR="$HOME/.nvm"
+# Some Bash completion stuff, tbh I forgot how this works but it seems to work fine
 
 [[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
     . /usr/share/bash-completion/bash_completion
+
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
